@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Namaste React</title>
+</head>
+<body>
+    <!-- We have used html  -->
+    <!-- <div id="root">
+        <h1>Hello World!</h1>
+    </div> -->
+
+
+    <!-- We will using js to print hello world -->
+    <!-- <div id="root"></div>
+
+    <script>
+        const heading = document.createElement("h1");
+        heading.innerText = "Hello World Using Javascript!";
+        
+        const root = document.getElementById("root");
+        root.appendChild(heading);
+    </script> -->
+
+
+    <!-- We can use react to achieve the same code -->
+    <div id="root"></div>
+
+    <!-- CDN for React . This is the core file of the react-->
+    <script 
+        crossorigin 
+        src="https://unpkg.com/react@18/umd/react.development.js">
+    </script>
+
+    <!-- CDN For react DOM. This is react library  useful for DOM operation. Kind of like bridge between browser and react -->
+    <script 
+        crossorigin 
+        src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
+    </script>
+
+    <!-- This script is for React Code no we will write our react code here -->
+    <!-- <script>
+
+        const heading = React.createElement("h1", {}, "Hello World Using React!");
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        
+        root.render(heading);
+
+    </script> -->
+
+    <!-- Do the same thing using extrenal js file -->
+    <script src="./App.js"></script>
+
+</body>
+</html>
