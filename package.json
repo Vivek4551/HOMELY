@@ -1,0 +1,23 @@
+{
+  "name": "homely",
+  "version": "1.0.0",
+  "description": "This is for food app webiste",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vivek4551/HOMELY.git"
+  },
+  "keywords": [
+    "react",
+    "food-app"
+  ],
+  "author": "Vivek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vivek4551/HOMELY/issues"
+  },
+  "homepage": "https://github.com/Vivek4551/HOMELY#readme"
+}
