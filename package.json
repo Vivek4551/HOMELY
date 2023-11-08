@@ -19,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/Vivek4551/HOMELY/issues"
   },
-  "homepage": "https://github.com/Vivek4551/HOMELY#readme"
+  "homepage": "https://github.com/Vivek4551/HOMELY#readme",
+  "devDependencies": {
+    "parcel": "^2.10.2",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }
