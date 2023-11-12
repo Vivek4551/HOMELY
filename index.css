@@ -1,3 +1,42 @@
-#heading{
-    color: red;
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+.logo{
+    width: 100px;
+    height: 100px;
+}
+.nav-items{
+    padding: 0px 20px;
+}
+.nav-items > ul{
+    display: flex;
+    font-size: 24px;
+    /* padding: 0px 20px; */
+    list-style: none;
+}
+.nav-items > ul > li{
+    padding: 10px;
+    margin: 10px;
+}
+.res-card{
+    margin: 5px;
+    padding: 5px;
+    width: 250px;
+    
+}
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+.search-container{
+    padding: 10px 10px;
+}
+.res-logo{
+    width:100%;
+}
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
 }
