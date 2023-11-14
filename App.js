@@ -1897,7 +1897,7 @@ const Body = () => {
         ))}
       </div>
     </div>
-  );
+  ); 
 };
 
 const AppLayout = () => {
