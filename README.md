@@ -52,3 +52,11 @@
   - when we have to export multiple things from a file in a component then we can't use default export it will give error. In this case we use Named export.
   - Wriite export keyword before a variable, E.G - export const LOGO_URL = "https//.xyz_abc.com"
   - While importing named exports we have to use curly brackets, E.G - import {Named_exports} from "../xyz/abc"
+  
+
+# React Hooks
+  - When we want that , when we change data then UI should also be updated, For this react has some super Power called hooks
+  - It is a normal Js utility function - written by Facebook Developers
+  - Two very important hooks - useState() & useEffect()
+  - useState() -> SuprePowerful state variables in react
+  - Whenever a state variable updates, react will re-render the component
