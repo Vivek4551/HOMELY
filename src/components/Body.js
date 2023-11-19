@@ -7,6 +7,8 @@ const Body = () => {
   // Local state variable
   // whenever a
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]); 
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -18,21 +20,50 @@ const Body = () => {
     );
     const json = await data.json();
 
-    // console.log(json);
-    setListOfRestaurant(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    console.log(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants, "listOfRestaurant");
+    console.log(json);
+    setListOfRestaurant(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurant(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
-  // conditional rendering 
+  // conditional rendering
   // if(listOfRestaurant.length === 0) {
   //   return (
   //     <Shimmer/>
   //   );
   // };
 
-  return (listOfRestaurant.length === 0) ? <Shimmer/> : (
+  return listOfRestaurant.length === 0 ? (<Shimmer />) : 
+  (
     <div className="body">
       <div className="filter">
+        {/* {console.log("Body rendered again")} */}
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Search for a restaurant"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="searchBtn"
+            onClick={() => {
+              const filteredRestList = listOfRestaurant.filter((restaurant) =>
+                restaurant.info.name
+                .toLowerCase()
+                .includes(searchText.toLowerCase())
+              );
+              setFilteredRestaurant(filteredRestList);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
@@ -47,7 +78,7 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {listOfRestaurant.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>

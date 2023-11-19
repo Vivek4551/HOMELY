@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LOGO_URL } from "../utils/constants";
+import Logo from "../utils/logo.png";
 
 // two types of import -> default and named.   -> In named import we have to give curly braces and what we are exporting should be exported by named exports.
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="logo-conatiner">
-        <img className="logo" src={LOGO_URL} />
+        <img className="logo" src={Logo} />
       </div>
 
       <div className="nav-items">
