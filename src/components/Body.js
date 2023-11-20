@@ -64,6 +64,7 @@ const Body = () => {
             Search
           </button>
         </div>
+
         <button
           className="filter-btn"
           onClick={() => {
@@ -75,6 +76,7 @@ const Body = () => {
         >
           Top Rated Restaurant
         </button>
+
       </div>
 
       <div className="res-container">
