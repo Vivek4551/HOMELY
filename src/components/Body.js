@@ -30,11 +30,13 @@ const Body = () => {
   };
 
   // conditional rendering
-  // if(listOfRestaurant.length === 0) {
-  //   return (
-  //     <Shimmer/>
-  //   );
-  // };
+  if(filteredRestaurant.length === 0) {
+    return (
+      <>
+        <h1>No Restaurant Found ......</h1>
+      </>
+    );
+  };
 
   return listOfRestaurant.length === 0 ? (<Shimmer />) : 
   (
