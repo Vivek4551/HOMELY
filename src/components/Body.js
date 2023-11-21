@@ -29,7 +29,7 @@ const Body = () => {
     );
   };
 
-  // conditional rendering
+  // conditional rendering if restaurant list is empty
   if(filteredRestaurant.length === 0) {
     return (
       <>
@@ -42,7 +42,7 @@ const Body = () => {
   (
     <div className="body">
       <div className="filter">
-        {/* {console.log("Body rendered again")} */}
+        {/* episode 7 ki 15 min se dekhna hai */}
         <div className="search">
           <input
             type="text"
@@ -55,7 +55,11 @@ const Body = () => {
           <button
             className="searchBtn"
             onClick={() => {
-              const filteredRestList = listOfRestaurant.filter((restaurant) =>
+              if(searchText === "") {
+                setFilteredRestaurant(listOfRestaurant);
+                return;
+              }
+              const filteredRestList = filteredRestaurant.filter((restaurant) =>
                 restaurant.info.name
                 .toLowerCase()
                 .includes(searchText.toLowerCase())
@@ -70,10 +74,11 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            const fileteredList = listOfRestaurant.filter(
+            const fileteredList = filteredRestaurant.filter(
               (resData) => resData?.info.avgRating > 4
             );
-            setListOfRestaurant(fileteredList);
+            // console.log(fileteredList);
+            setFilteredRestaurant(fileteredList);
           }}
         >
           Top Rated Restaurant
