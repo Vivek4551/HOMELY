@@ -60,3 +60,14 @@
   - Two very important hooks - useState() & useEffect()
   - useState() -> SuprePowerful state variables in react
   - Whenever a state variable updates, react will re-render the component
+
+# Route
+ - install react router-dom using npm
+ - whenever we want to use routes , we have to write routing configuration
+ - For writting that we must import createBrowserRouter as a named export 
+ - configuration => some info that will define that what will happen on specific route
+ - createBrowserRouter => it takes an array of paths and paths are nothing just objects that will decide the route
+
+# Two Types of routing
+ - Client Side Routing
+ - Server Side Routing

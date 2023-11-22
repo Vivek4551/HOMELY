@@ -7,3 +7,5 @@ export const LOGO_URL =
 //when we have to export multiple things from a file in a component then we can't use default export it will give error. In this case we use Named export.
 
 // two types of export -> named export and normal export
+
+export const MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=31.2548238&lng=75.7001618&restaurantId=";

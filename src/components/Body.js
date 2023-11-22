@@ -1,13 +1,14 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 // not using keys (not acceptable) <<<<< index as keys <<<<<< unique id (best practice)
 const Body = () => {
   // Local state variable
   // whenever a
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
-  const [filteredRestaurant, setFilteredRestaurant] = useState([]); 
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
@@ -30,19 +31,20 @@ const Body = () => {
   };
 
   // conditional rendering if restaurant list is empty
-  if(filteredRestaurant.length === 0) {
-    return (
-      <>
-        <h1>No Restaurant Found ......</h1>
-      </>
-    );
-  };
+  // if(filteredRestaurant.length === 0) {
+  //   return (
+  //     <>
+  //       <h1>No Restaurant Found ......</h1>
+  //     </>
+  //   );
+  // };
 
-  return listOfRestaurant.length === 0 ? (<Shimmer />) : 
-  (
+  return listOfRestaurant.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
-        {/* episode 7 ki 15 min se dekhna hai */}
+        {/* search bar */}
         <div className="search">
           <input
             type="text"
@@ -55,14 +57,14 @@ const Body = () => {
           <button
             className="searchBtn"
             onClick={() => {
-              if(searchText === "") {
+              if (searchText === "") {
                 setFilteredRestaurant(listOfRestaurant);
                 return;
               }
               const filteredRestList = filteredRestaurant.filter((restaurant) =>
                 restaurant.info.name
-                .toLowerCase()
-                .includes(searchText.toLowerCase())
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase())
               );
               setFilteredRestaurant(filteredRestList);
             }}
@@ -83,12 +85,16 @@ const Body = () => {
         >
           Top Rated Restaurant
         </button>
-
       </div>
 
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <link
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.data.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </link>
         ))}
       </div>
     </div>

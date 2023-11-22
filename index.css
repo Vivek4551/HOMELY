@@ -42,7 +42,7 @@
 .res-container{
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: 100vw;
 }
 .filter-btn{
     margin: 10px;
@@ -51,7 +51,7 @@
 .shimmer-container{
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: 100vw;
 }
 .shimmer-card{
     margin: 5px;
