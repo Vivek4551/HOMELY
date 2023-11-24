@@ -32,7 +32,9 @@ const RestaurantMenu = () => {
 
   console.log(itemCards);
 
-  return (
+  return resInfo.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="menu">
       <h1>{name}</h1>
       <p>
