@@ -6,9 +6,17 @@ const About = () => {
     <div>
       <h1>About Page</h1>
       <h2>This is Namaste React Webseries</h2>
-      <User />
-      
-      <UserClass />
+      <User
+        name={"Vivek Kumar (from functional component)"}
+        location={"Phagwara"}
+        instaId={"ig.vivek02"}
+      />
+
+      <UserClass
+        name={"Vivek Kumar (from class component)"}
+        location={"Phagwara"}
+      />
+
     </div>
   );
 };
