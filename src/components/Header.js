@@ -8,18 +8,15 @@ const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="header">
-      <div className="logo-conatiner">
-        <img className="logo" src={Logo}
-          loading="lazy"
-        />
+    <div className="header z-20 top-0 flex justify-between items-center sticky backdrop-blur-lg bg-opacity-30 border-2 border-black m-1">
+
+      <div className="logo-conatiner w-28">
+        <img className="logo" src={Logo} loading="lazy" />
       </div>
 
-      <div className="nav-items">
-        <ul>
-          <li>
-            Online Status : {onlineStatus ? "✅" : "❌" }
-          </li>
+      <div className="nav-items flex m-4 ">
+        <ul className="flex space-x-14 m-4 p-4 justify-around text-xl text-red-700">
+          <li>Online Status : {onlineStatus ? "✅" : "❌"}</li>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -37,17 +34,20 @@ const Header = () => {
           </li>
 
           <li>Cart</li>
-          
-          <button
-            className="btn"
-            onClick={() => {
-              btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
-            }}
-          >
-            {btnName}
-          </button>
         </ul>
       </div>
+
+      <div className="btn-log">
+        <button
+          className="btn bg-blue-500 hover:bg-blue-700 text-white w-24 h-14  rounded-lg "
+          onClick={() => {
+            btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
+          }}
+        >
+          {btnName}
+        </button>
+      </div>
+
     </div>
   );
 };

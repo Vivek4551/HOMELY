@@ -1,18 +1,22 @@
-*{
-    /* margin: 0;
-    padding: 0; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* *{
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-}
-.header{
+} */
+/* .header{
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
-}
-.logo{
+} */
+/* .logo{
     width: 100px;
     height: 100px;
-}
-.nav-items{
+} */
+/* .nav-items{
     padding: 0px 20px;
 }
 .nav-items > ul{
@@ -23,28 +27,28 @@
 .nav-items > ul > li{
     padding: 10px;
     margin: 10px;
-}
-.res-card{
+} */
+/* .res-card{
     margin: 5px;
     padding: 5px;
     width: 15rem;
-}
-.res-card:hover{
+} */
+/* .res-card:hover{
     border: 1px solid black;
     cursor: pointer;
-}
-.search-container{
+} */
+/* .search-container{
     padding: 10px 10px;
-}
-.res-logo{
+} */
+/* .res-logo{
     width:100%;
-}
-.res-container{
+} */
+/* .res-container{
     display: flex;
     flex-wrap: wrap;
     width: 100vw;
-}
-.filter-btn{
+} */
+/* .filter-btn{
     margin: 10px;
     cursor: pointer;
 }
@@ -52,7 +56,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100vw;
-}
+} */
 .shimmer-card{
     margin: 5px;
     margin-top: 3rem;
@@ -60,8 +64,9 @@
     width: 15rem;
     height: 25rem;
     background-color: #f0f0f0;
+    display: flex;
 }
-.btn{
+/* .btn{
     padding: 0 20px;
 }
 .search{
@@ -74,4 +79,4 @@
     padding: 10px;
     margin-top: 10px;
     border: 1px solid black;
-}
+} */

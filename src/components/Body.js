@@ -18,7 +18,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=31.2548238&lng=75.7001618&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
 
@@ -54,7 +54,7 @@ const Body = () => {
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
+    <div className="body w-[100vw] flex flex-col items-center gap-3">
       <div className="filter">
         {/* search bar */}
         <div className="search">
@@ -99,7 +99,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="res-container">
+      <div className="res-container  flex flex-wrap  gap-3 mx-3">
         {filteredRestaurant.map((restaurant) => (
           <Link
             key={restaurant.info.id}
