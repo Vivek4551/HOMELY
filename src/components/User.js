@@ -14,6 +14,7 @@ const User = ({ name, location, instaId }) => {
         Increase
       </button>
       
+      grade
       <h2>Name : {name}</h2>
       <h3>Location : {location}</h3>
       <h4>InstaId : {instaId}</h4>
