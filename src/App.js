@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,12 +8,21 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
+// import GrcPage from "./components/GrcPage";
+
+// chunking -> divide the code into small chunks
+// code splitting -> divide the code into small chunks and load them on demand
+// lazy loading -> load the code on demand
+// dynamic bundling -> divide the code into small chunks and load them on demand
+
+const GrcPage = lazy(() => import("./components/GroceryPage"));
+
 
 const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Outlet/>
+      <Outlet />
     </div>
   );
 };
@@ -29,25 +38,30 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Body />,
-        errorElement: <Error/>
+        errorElement: <Error />,
       },
       {
         path: "/about",
         element: <About />,
-        errorElement: <Error/>
+        errorElement: <Error />,
+      },
+      {
+        path: "/grcPage",
+        element: <Suspense fallback={<div>Loading...</div>}><GrcPage /></Suspense>,
+        errorElement: <Error />,
       },
       {
         path: "/contact",
         element: <Contact />,
-        errorElement: <Error/>
+        errorElement: <Error />,
       },
       {
-        path:"/restaurants/:resId",
-        element: <RestaurantMenu/>
-      }
+        path: "/restaurants/:resId",
+        element: <RestaurantMenu />,
+      },
     ],
-    errorElement: <Error/>
-  }
+    errorElement: <Error />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

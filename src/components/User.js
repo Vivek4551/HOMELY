@@ -1,10 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 const User = ({ name, location, instaId }) => {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   return (
     <div className="user-card">
-      <h1>Count : {count}</h1>
+      {/* <h1>Count : {count}</h1>
 
       <button
         onClick={() => {
@@ -12,7 +12,7 @@ const User = ({ name, location, instaId }) => {
         }}
       >
         Increase
-      </button>
+      </button> */}
       
       grade
       <h2>Name : {name}</h2>
