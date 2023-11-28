@@ -28,4 +28,16 @@ const RestaurantCard = (props) => {
   );
 };
 
+// Higher order component (input -> component, output -> restaurant carc having best seller tag on card)
+export const withBestSellerTag = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="relative top-6 bg-orange-600 rounded-md text-sm text-white w-[100px] mx-1 p-1">Best Seller</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
 export default RestaurantCard;

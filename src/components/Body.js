@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withBestSellerTag } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -12,6 +12,11 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  // Higher Order function
+  const RestaurantCardBestSeller = withBestSellerTag(RestaurantCard);
+
+  console.log("Body rendered", listOfRestaurant);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -22,7 +27,7 @@ const Body = () => {
     );
     const json = await data.json();
 
-    console.log(json);
+    // console.log(json);
     setListOfRestaurant(
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -40,10 +45,9 @@ const Body = () => {
   //   );
   // };
 
-
   const onlineStatus = useOnlineStatus();
 
-  if(!onlineStatus) {
+  if (!onlineStatus) {
     return (
       <div className="body">
         <h1>Looks like you are offline ! Please check your online status</h1>
@@ -56,18 +60,20 @@ const Body = () => {
   ) : (
     <div className="body w-[100vw] flex flex-col items-center gap-3">
       <div className="filter">
+
         {/* search bar */}
-        <div className="search">
+        <div className="search flex items-center">
           <input
             type="text"
             placeholder="Search for a restaurant"
             value={searchText}
+            className="border-2 border-black rounded-md w-48 h-8 p-2"
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
-            className="searchBtn"
+            className="searchBtn  bg-blue-500 hover:bg-blue-700 text-white p-1 m-1 rounded-lg text-sm w-24"
             onClick={() => {
               if (searchText === "") {
                 setFilteredRestaurant(listOfRestaurant);
@@ -83,29 +89,36 @@ const Body = () => {
           >
             Search
           </button>
-        </div>
 
-        <button
-          className="filter-btn"
+          <button
+          className="filter-btn bg-orange-500 hover:bg-orange-700 text-white p-1 m-2 rounded-lg text-sm w-48"
           onClick={() => {
             const fileteredList = filteredRestaurant.filter(
-              (resData) => resData?.info.avgRating > 4
+              (resData) => resData?.info.avgRating >= 4.2
             );
-            // console.log(fileteredList);
+            console.log(fileteredList);
             setFilteredRestaurant(fileteredList);
           }}
         >
           Top Rated Restaurant
         </button>
+
+        </div>
+
       </div>
 
-      <div className="res-container  flex flex-wrap  gap-3 mx-3">
+      <div className="res-container  flex flex-wrap  gap-3 mx-5 items-end">
         {filteredRestaurant.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            <RestaurantCard resData={restaurant} />
+            {/* if the restaurant is having avg rating more tha 4 the  add a best seller tag to it (HOC) */}
+            {restaurant.info.avgRating >= 4.2 ? (
+              <RestaurantCardBestSeller resData={restaurant}/>
+            ) : (
+              <RestaurantCard resData={restaurant}/>
+            )}
           </Link>
         ))}
       </div>

@@ -15,7 +15,7 @@ const Header = () => {
       </div>
 
       <div className="nav-items flex m-4 ">
-        <ul className="flex space-x-14 m-4 p-4 justify-around text-xl text-red-700">
+        <ul className="flex space-x-14 m-4 p-4 justify-around text-xl text-red-700 cursor-pointer">
           <li>Online Status : {onlineStatus ? "✅" : "❌"}</li>
           <li>
             <Link to="/">Home</Link>
@@ -39,7 +39,7 @@ const Header = () => {
 
       <div className="btn-log">
         <button
-          className="btn bg-blue-500 hover:bg-blue-700 text-white w-24 h-14  rounded-lg "
+          className="btn bg-blue-500 hover:bg-blue-700 text-white w-24 h-14  rounded-lg mx-2"
           onClick={() => {
             btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
           }}
