@@ -1,4 +1,4 @@
-// import { useState, useEffect } from "react";
+import { useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 // import { MENU_API } from "../utils/constants";
@@ -10,6 +10,8 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);
+
+  const [showIndex, setShowIndex] = useState(null); 
 
   // useEffect(() => {
   //   fetchMenu();
@@ -39,8 +41,8 @@ const RestaurantMenu = () => {
       (c) =>
         c.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-  );
-  
+    );
+
   // console.log(categories);
 
   // console.log(resInfo?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
@@ -54,7 +56,16 @@ const RestaurantMenu = () => {
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
       {/* Accordians for categories */}
-      {categories.map((category) => <RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card}/> )}
+      {categories.map((category, index) => (
+        //* controlled component */
+        <RestaurantCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+          showIndex={index === showIndex ? true : false}
+          setShowIndex={(index) => setShowIndex(index)}
+          index={index}
+        />
+      ))}
     </div>
   );
 };

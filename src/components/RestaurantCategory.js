@@ -1,15 +1,15 @@
 import ItemList from "./ItemList";
-import { useState } from "react";
-const RestaurantCategory = ({ data }) => {
+
+
+const RestaurantCategory = ({ data, showIndex, setShowIndex, index }) => {
   // here const {data} = props;
   // we are destructuring the props object and getting the data property from it
-  console.log(data);
-
-  const [showItems, setShowItems] = useState(false);
-
+  // console.log(data);
   const handleClick = () => {
-    setShowItems(!showItems);
+    showIndex ? setShowIndex(null) : setShowIndex(index);
   };
+
+  
 
   return (
     <div className="restaurant-category">
@@ -25,7 +25,7 @@ const RestaurantCategory = ({ data }) => {
           <span>⬇️</span>
         </div>
         {/* Accordian Body */}
-        {showItems && <ItemList items={data.itemCards} />}
+        {showIndex && <ItemList items={data.itemCards} />}
       </div>
     </div>
   );

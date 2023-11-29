@@ -8,6 +8,8 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { useState, useEffect } from "react";
+import UserContext from "./utils/UserContext";
 // import GrcPage from "./components/GrcPage";
 
 // chunking -> divide the code into small chunks
@@ -17,13 +19,31 @@ import RestaurantMenu from "./components/RestaurantMenu";
 
 const GrcPage = lazy(() => import("./components/GroceryPage"));
 
-
 const AppLayout = () => {
+  const [userName, setUserName] = useState(" ");
+
+  // Authetnication
+  useEffect(() => {
+    // make an api call and send userName and password
+    const data = {
+      name: "Vivek Kumar",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    // Default
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+    {/* Overriding the default value */}
+    {/* here i want that if we want to chnage the value thorugh user name box in body component 
+    the it should render that value os user name in every component where the usercontext 
+    is used in real time, One feature is that along with value we can also pass setUsername 
+    in Context so that we can able to acces it in body component  */}
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
@@ -47,7 +67,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/grcPage",
-        element: <Suspense fallback={<div>Loading...</div>}><GrcPage /></Suspense>,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <GrcPage />
+          </Suspense>
+        ),
         errorElement: <Error />,
       },
       {

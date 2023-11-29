@@ -1,8 +1,9 @@
 import RestaurantCard, { withBestSellerTag } from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 // not using keys (not acceptable) <<<<< index as keys <<<<<< unique id (best practice)
 const Body = () => {
@@ -15,7 +16,7 @@ const Body = () => {
   // Higher Order function
   const RestaurantCardBestSeller = withBestSellerTag(RestaurantCard);
 
-  console.log("Body rendered", listOfRestaurant);
+  // console.log("Body rendered", listOfRestaurant);
 
   useEffect(() => {
     fetchData();
@@ -23,7 +24,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
 
@@ -55,12 +56,16 @@ const Body = () => {
     );
   }
 
+  // Change the username live by using setUser name hook function which is 
+  // inside the header component as setuserName directly updates the data of 
+  // context using provider in each comonent where it is used
+  const { loggedInUser ,setUserName } = useContext(UserContext);
+
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body w-[100vw] flex flex-col items-center gap-3">
       <div className="filter">
-
         {/* search bar */}
         <div className="search flex items-center">
           <input
@@ -91,20 +96,29 @@ const Body = () => {
           </button>
 
           <button
-          className="filter-btn bg-orange-500 hover:bg-orange-700 text-white p-1 m-2 rounded-lg text-sm w-48"
-          onClick={() => {
-            const fileteredList = filteredRestaurant.filter(
-              (resData) => resData?.info.avgRating >= 4.2
-            );
-            console.log(fileteredList);
-            setFilteredRestaurant(fileteredList);
-          }}
-        >
-          Top Rated Restaurant
-        </button>
+            className="filter-btn bg-orange-500 hover:bg-orange-700 text-white p-1 m-2 rounded-lg text-sm w-48"
+            onClick={() => {
+              const fileteredList = filteredRestaurant.filter(
+                (resData) => resData?.info.avgRating >= 4.2
+              );
+              console.log(fileteredList);
+              setFilteredRestaurant(fileteredList);
+            }}
+          >
+            Top Rated Restaurant
+          </button>
 
+          <div>
+            <label className="m-1 p-1 text-lg font-bold">User Name :</label>
+            <input
+              className="p-2 border border-black rounded-lg"
+              value={loggedInUser}
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+            />
+          </div>
         </div>
-
       </div>
 
       <div className="res-container  flex flex-wrap  gap-3 mx-5 items-end">
@@ -115,9 +129,9 @@ const Body = () => {
           >
             {/* if the restaurant is having avg rating more tha 4 the  add a best seller tag to it (HOC) */}
             {restaurant.info.avgRating >= 4.2 ? (
-              <RestaurantCardBestSeller resData={restaurant}/>
+              <RestaurantCardBestSeller resData={restaurant} />
             ) : (
-              <RestaurantCard resData={restaurant}/>
+              <RestaurantCard resData={restaurant} />
             )}
           </Link>
         ))}
