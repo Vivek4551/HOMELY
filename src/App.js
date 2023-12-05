@@ -1,4 +1,3 @@
-
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
@@ -12,6 +11,8 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import { useState, useEffect } from "react";
 import UserContext from "./utils/UserContext";
 // import GrcPage from "./components/GrcPage";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 // chunking -> divide the code into small chunks
 // code splitting -> divide the code into small chunks and load them on demand
@@ -33,18 +34,20 @@ const AppLayout = () => {
   }, []);
 
   return (
-    // Default
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-    {/* Overriding the default value */}
-    {/* here i want that if we want to chnage the value thorugh user name box in body component 
+    <Provider store={appStore}>
+      {/*  Default  */}
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        {/* Overriding the default value */}
+        {/* here i want that if we want to chnage the value thorugh user name box in body component 
     the it should render that value os user name in every component where the usercontext 
     is used in real time, One feature is that along with value we can also pass setUsername 
     in Context so that we can able to acces it in body component  */}
-      <div className="app">
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -88,7 +91,6 @@ const appRouter = createBrowserRouter([
     errorElement: <Error />,
   },
 ]);
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRouter} />);

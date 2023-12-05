@@ -3,6 +3,7 @@ import Logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 // two types of import -> default and named.   -> In named import we have to give curly braces and what we are exporting should be exported by named exports.
 const Header = () => {
@@ -10,6 +11,10 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
   // const dataLogin = useContext(UserContext);
   const {loggedInUser} = useContext(UserContext); 
+
+  // selector -> it is a function that will take the state as an argument and return the value that we want to use
+  // Subscribing to the store
+  const cartItems = useSelector((store) => store.cart.items)
 
   return (
     <div className="header z-20 top-0 flex justify-between items-center sticky backdrop-blur-lg bg-opacity-30 border-2 border-black m-1">
@@ -37,7 +42,7 @@ const Header = () => {
             <Link to="/contact">Contact Us</Link>
           </li>
 
-          <li>Cart</li>
+          <li className="text-xl font-bold">Cart - ({cartItems.length} items)</li>
         </ul>
       </div>
 

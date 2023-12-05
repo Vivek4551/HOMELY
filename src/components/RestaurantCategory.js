@@ -9,8 +9,6 @@ const RestaurantCategory = ({ data, showIndex, setShowIndex, index }) => {
     showIndex ? setShowIndex(null) : setShowIndex(index);
   };
 
-  
-
   return (
     <div className="restaurant-category">
       {/* Header of Accordian */}

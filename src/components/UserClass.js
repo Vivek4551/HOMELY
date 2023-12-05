@@ -44,7 +44,7 @@ class UserClass extends React.Component {
         >
           Increase
         </button> */}
-        
+
         <img src={avatar_url} alt="user" />
         <h2>Name : {name}</h2>
         <h3>App : FOOD APP</h3>
