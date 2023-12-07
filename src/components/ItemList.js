@@ -6,11 +6,11 @@ const ItemList = ({ items }) => {
 
   const disptach = useDispatch();
 
-  const handleAddItem = () => {
+  const handleAddItem = (item) => { 
     // disptach an action
-    disptach(addItem("pizza"));
-  };
-  // 44:42 se dekhna hai
+    disptach(addItem(item));
+  }; 
+
   console.log(items);
 
   return (
@@ -38,7 +38,7 @@ const ItemList = ({ items }) => {
           <div className="p-4 w-3/12">
             <div className="absolute flex">
               <button className="p-2 mx-16 text-black bg-white shadow-lg rounded-lg "
-              onClick = {handleAddItem} >
+              onClick = {() => handleAddItem(item)} >
                 Add +
               </button>
             </div>

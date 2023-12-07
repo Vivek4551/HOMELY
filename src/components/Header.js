@@ -10,15 +10,15 @@ const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
   // const dataLogin = useContext(UserContext);
-  const {loggedInUser} = useContext(UserContext); 
+  const { loggedInUser } = useContext(UserContext);
 
   // selector -> it is a function that will take the state as an argument and return the value that we want to use
   // Subscribing to the store
-  const cartItems = useSelector((store) => store.cart.items)
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="header z-20 top-0 flex justify-between items-center sticky backdrop-blur-lg bg-opacity-30 border-2 border-black m-1">
-
       <div className="logo-conatiner w-28">
         <img className="logo" src={Logo} loading="lazy" />
       </div>
@@ -42,7 +42,9 @@ const Header = () => {
             <Link to="/contact">Contact Us</Link>
           </li>
 
-          <li className="text-xl font-bold">Cart - ({cartItems.length} items)</li>
+          <li className="text-xl font-bold">
+            <Link to="/cart">Cart - ({cartItems.length} items) </Link>
+          </li>
         </ul>
       </div>
 
@@ -55,7 +57,7 @@ const Header = () => {
         >
           {btnName}
         </button>
-          {/* <li className="px-4 font-bold">{loggedInUser} </li> */}
+        {/* <li className="px-4 font-bold">{loggedInUser} </li> */}
       </div>
 
       <li className="px-4 font-bold">{loggedInUser} </li>

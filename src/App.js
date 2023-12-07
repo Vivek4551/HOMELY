@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+ import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -13,6 +13,7 @@ import UserContext from "./utils/UserContext";
 // import GrcPage from "./components/GrcPage";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 // chunking -> divide the code into small chunks
 // code splitting -> divide the code into small chunks and load them on demand
@@ -87,6 +88,10 @@ const appRouter = createBrowserRouter([
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
       },
+      {
+        path: "/cart",
+        element: <Cart />,
+      }
     ],
     errorElement: <Error />,
   },
