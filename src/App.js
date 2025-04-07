@@ -20,8 +20,6 @@ import Cart from "./components/Cart";
 // lazy loading -> load the code on demand
 // dynamic bundling -> divide the code into small chunks and load them on demand
 
-// checking git for personal
-
 const GrcPage = lazy(() => import("./components/GroceryPage"));
 
 const AppLayout = () => {
